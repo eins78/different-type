@@ -78,7 +78,7 @@ if ( !class_exists( 'DifferentType' ) ) {
 				load_plugin_textdomain( FB_DT_TEXTDOMAIN, false, dirname( FB_DT_BASENAME ) . '/languages' );
 		}
 		
-		// unsintall all postmetadata
+		// uninstall all postmetadata
 		function uninstall() {
 			
 			$all_posts = get_posts('numberposts=0&post_type=post&post_status=');
@@ -102,13 +102,13 @@ if ( !class_exists( 'DifferentType' ) ) {
 			add_meta_box( 'hotel_helper',
 									__( 'Different Types', FB_DT_TEXTDOMAIN ),
 									array( &$this, 'meta_box' ),
-									'post', 'normal', 'high'
+									'm18_protokoll', 'normal', 'high'
 									);
 									
 			// remove meta box for trackbacks
-			remove_meta_box('trackbacksdiv', 'post', 'normal');
+			remove_meta_box('trackbacksdiv', 'm18_protokoll', 'normal');
 			// remove meta box for custom fields
-			remove_meta_box('postcustom', 'post', 'normal');
+			remove_meta_box('postcustom', 'm18_protokoll', 'normal');
 		}
 		
 		// check for preview
@@ -119,7 +119,7 @@ if ( !class_exists( 'DifferentType' ) ) {
 			if ($id > 0 && $preview == 'true') {
 				global $wpdb;
 				$type = $wpdb->get_results("SELECT post_type FROM $wpdb->posts WHERE ID=$id");
-				if ( count($type) && ($type[0]->post_type == 'page') && current_user_can('edit_page') )
+				if ( count($type) && ($type[0]->post_type == 'm18_protokoll') && current_user_can('edit_page') )
 					return true;
 			}
 			return false;
@@ -161,7 +161,7 @@ if ( !class_exists( 'DifferentType' ) ) {
 			?>
 			<table id="dt-page-definition" width="100%" cellspacing="5px">
 				<tr valign="top">
-					<td style="width:20%;"><label for="dt-heading"><?php _e( 'Subtitle:', FB_DT_TEXTDOMAIN ); ?></label></td>
+					<td style="width:20%;"><label for="dt-heading"><?php _e( 'Sub title:', FB_DT_TEXTDOMAIN ); ?></label></td>
 					<td><input type="text" id="dt-heading" name="dt-heading" class="heading form-input-tip" size="16" autocomplete="off" value="<?php echo $value['heading']; ?>" tabindex="6" style="width:99.5%"/></td>
 				</tr>
 				<tr valign="top">
